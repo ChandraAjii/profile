@@ -377,7 +377,8 @@
           <div class="row">
             <div class="right-content">
               <div class="container">
-                <form id="contact" action="" method="post">
+
+                <form id="contact" onsubmit="sendToWhatsApp(); return false;">
                   <div class="row">
                     <div class="col-md-6">
                       <fieldset>
@@ -395,7 +396,7 @@
                       <fieldset>
                         <input
                           name="email"
-                          type="text"
+                          type="email"
                           class="form-control"
                           id="email"
                           placeholder="Email anda..."
@@ -502,5 +503,24 @@
         checkSection();
       });
     </script>
+    <script>
+      function sendToWhatsApp() {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var subject = document.getElementById("subject").value;
+        var message = document.getElementById("message").value;
+  
+        var whatsappMessage = "Halo, berikut detail pesan:\n" +
+          "Nama: " + name + "\n" +
+          "Email: " + email + "\n" +
+          "Subjek: " + subject + "\n" +
+          "Pesan: " + message;
+  
+        var phoneNumber = "62895360412809"; // Ganti dengan nomor tujuan
+        var whatsappURL = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + encodeURIComponent(whatsappMessage);
+  
+        window.open(whatsappURL, "_blank");
+      }
+    </script>
   </body>
 </html>
